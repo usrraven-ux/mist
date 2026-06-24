@@ -5,6 +5,7 @@ import { JobProvider } from './context/JobContext'
 import { NotificationProvider } from './context/NotificationContext'
 import { OnboardingProvider } from './context/OnboardingContext'
 import Layout from './components/Layout'
+import AdminLayout from './pages/Admin/AdminDashboard'
 import Home from './pages/Home'
 import Jobs from './pages/Jobs'
 import JobDetail from './pages/JobDetail'
@@ -17,6 +18,7 @@ import Profile from './pages/Profile'
 import Onboarding from './pages/Onboarding'
 import SearchResults from './pages/SearchResults'
 import LoadingScreen from './components/LoadingScreen'
+import Admin from './pages/Admin'
 
 function App() {
   const [isLoading, setIsLoading] = useState(true)
@@ -57,22 +59,24 @@ function App() {
     <JobProvider>
       <NotificationProvider>
         <Router>
-          <Layout>
-            <AnimatePresence mode='wait'>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/jobs" element={<Jobs />} />
-                <Route path="/jobs/:id" element={<JobDetail />} />
-                <Route path="/state/:state" element={<StateJobs />} />
-                <Route path="/category/:category" element={<CategoryJobs />} />
-                <Route path="/qualification/:qualification" element={<QualificationJobs />} />
-                <Route path="/notifications" element={<Notification />} />
-                <Route path="/saved" element={<SavedJobs />} />
-                <Route path="/profile" element={<Profile />} />
-                <Route path="/search" element={<SearchResults />} />
-              </Routes>
-            </AnimatePresence>
-          </Layout>
+          <AnimatePresence mode='wait'>
+            <Routes>
+              {/* Main Site Routes */}
+              <Route path="/" element={<Layout><Home /></Layout>} />
+              <Route path="/jobs" element={<Layout><Jobs /></Layout>} />
+              <Route path="/jobs/:id" element={<Layout><JobDetail /></Layout>} />
+              <Route path="/state/:state" element={<Layout><StateJobs /></Layout>} />
+              <Route path="/category/:category" element={<Layout><CategoryJobs /></Layout>} />
+              <Route path="/qualification/:qualification" element={<Layout><QualificationJobs /></Layout>} />
+              <Route path="/notifications" element={<Layout><Notification /></Layout>} />
+              <Route path="/saved" element={<Layout><SavedJobs /></Layout>} />
+              <Route path="/profile" element={<Layout><Profile /></Layout>} />
+              <Route path="/search" element={<Layout><SearchResults /></Layout>} />
+              
+              {/* Admin Routes (No Layout) */}
+              <Route path="/admin/*" element={<Admin />} />
+            </Routes>
+          </AnimatePresence>
         </Router>
       </NotificationProvider>
     </JobProvider>

@@ -1,13 +1,15 @@
 {
   "name": "govt-rank-luxury",
   "version": "1.0.0",
-  "description": "Luxury Government Job Portal with Custom UI/UX",
+  "description": "Luxury Government Job Portal with Custom UI/UX and Web Scraping",
   "private": true,
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0"
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "scrape": "node src/services/scraper/scrapeAll.js",
+    "scrape:once": "node src/services/scraper/scrapeOnce.js"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -18,7 +20,9 @@
     "recharts": "^2.10.3",
     "date-fns": "^2.30.0",
     "clsx": "^2.0.0",
-    "tailwind-merge": "^2.1.0"
+    "tailwind-merge": "^2.1.0",
+    "axios": "^1.6.2",
+    "cheerio": "^1.0.0-rc.12"
   },
   "devDependencies": {
     "@types/react": "^18.2.37",
